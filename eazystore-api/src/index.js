@@ -7,6 +7,9 @@ async function main() {
   await connect();
   await seed();
   const app = buildApp();
+  app.get("/health", (req, res)=>{
+    res.status(200).json({ status: "healthy" });
+  })
   app.listen(env.port, () => {
     console.log(`[server] listening on http://localhost:${env.port}`);
   });
